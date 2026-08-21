@@ -1,186 +1,69 @@
-# Student Management System
+# Meridian Student Management System
 
-A full-stack **Student Management System** developed as part of a Software Development Internship task. The application provides an efficient and user-friendly way to manage student records through complete **CRUD (Create, Read, Update, Delete)** operations.
+Meridian is a responsive student administration dashboard for managing academic records, reviewing enrollment insights, and handling student CRUD workflows.
 
-## 📌 Project Overview
+## Features
 
-The Student Management System is designed to simplify the management of student information. It allows users to add new student records, view existing information, update details, and delete records when required.
+- Live dashboard metrics for enrollment, courses, years, and gender
+- Student registry with search, filters, sorting, pagination, and responsive table layout
+- Add, view, edit, and delete student flows with confirmation and toast feedback
+- Inline form validation for Indian-style phone numbers, email, required fields, and academic options
+- Loading, empty, error, and duplicate-email states
+- Persistent light/dark theme and record-density preferences
+- PostgreSQL-backed data with parameterized Drizzle queries
 
-The project focuses on implementing fundamental software development concepts such as user interface design, data management, CRUD operations, application logic, and testing.
+## Technologies
 
-## ✨ Features
+- Frontend: React + Vite, TypeScript, Tailwind CSS, Recharts
+- Backend: Node.js, Express 5
+- Database: PostgreSQL with Drizzle ORM
+- Contracts: OpenAPI with generated React Query and Zod helpers
 
-* ➕ Add new student records
-* 👁️ View student information
-* ✏️ Update existing student details
-* 🗑️ Delete student records
-* 🔍 Search and manage student information
-* 📊 Organized student data management
-* 📱 Responsive and user-friendly interface
-* ✅ Input validation and error handling
-* 🔄 Complete CRUD functionality
+## Architecture
 
-## 🛠️ Technologies Used
+The frontend calls the Express REST API through `fetch`-backed generated hooks. The API validates request and response data, runs parameterized queries through Drizzle, and PostgreSQL remains the source of truth.
 
-* **Frontend:** HTML, CSS, JavaScript
-* **Backend:** Node.js / Express.js
-* **Database:** Database integration for storing student records
-* **Development Environment:** Replit
-* **Version Control:** Git & GitHub
+## API endpoints
 
-> Update the technology names above if your actual Replit project uses a different framework or database.
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | `/api/healthz` | Health check |
+| GET | `/api/students` | List student records |
+| POST | `/api/students` | Create a student |
+| GET | `/api/students/:id` | Read one student |
+| PUT | `/api/students/:id` | Update a student |
+| DELETE | `/api/students/:id` | Delete a student |
+| GET | `/api/dashboard/summary` | Enrollment metrics and grouped counts |
 
-## 📂 Project Structure
+## Database structure
 
-```text
-Student_Management_System/
-│
-├── public/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-│
-├── server/
-│   ├── routes/
-│   └── database/
-│
-├── package.json
-├── tsconfig.json
-├── .gitignore
-├── README.md
-└── replit.md
-```
+The `students` table stores:
 
-> The exact folder structure may vary depending on the implementation.
+`id`, `full_name`, `email`, `phone`, `course`, `year`, `gender`, `address`, and `created_at`.
 
-## ⚙️ Core Functionality
+Email is unique and all API input is validated before database writes.
 
-### 1. Add Student
+## Installation and local development
 
-Users can create a new student record by providing relevant information such as:
+1. Install dependencies with `pnpm install`.
+2. Set `DATABASE_URL` to the provided PostgreSQL connection string.
+3. Push the schema with `pnpm --filter @workspace/db run push`.
+4. Start the API with `pnpm --filter @workspace/api-server run dev`.
+5. Start the frontend with `pnpm --filter @workspace/student-management run dev`.
 
-* Student Name
-* Email
-* Phone Number
-* Course
-* Year
-* Gender
-* Address
+The workspace workflows provide `PORT` and `BASE_PATH` for normal Replit previews.
 
-### 2. View Students
+## Screenshots
 
-The application displays stored student records in an organized format, allowing users to easily access student information.
+The running dashboard preview is the source of truth for the current interface. It includes the overview dashboard, student registry, responsive navigation, forms, and settings views.
 
-### 3. Update Student
+## Future enhancements
 
-Existing student information can be modified whenever changes are required.
+- Role-based staff access and audit history
+- CSV import/export
+- Attendance and fee modules
+- Server-side pagination for larger institutions
 
-### 4. Delete Student
+## Internship task reference
 
-Users can remove student records that are no longer required.
-
-### 5. Data Management
-
-Student records are managed through application logic and database integration to ensure that information can be stored and retrieved efficiently.
-
-## 🔄 CRUD Operations
-
-| Operation  | Function               |
-| ---------- | ---------------------- |
-| **Create** | Add a new student      |
-| **Read**   | View student records   |
-| **Update** | Modify student details |
-| **Delete** | Remove student records |
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-* Node.js
-* npm
-* Git
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/shivangi-sharma0527/Student_Management_System.git
-```
-
-Navigate to the project directory:
-
-```bash
-cd Student_Management_System
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the application:
-
-```bash
-npm start
-```
-
-The application can then be accessed through the local development URL provided by the project.
-
-## 🧪 Testing
-
-The application was tested for the following functionalities:
-
-* Adding student records
-* Displaying student records
-* Updating student information
-* Deleting student records
-* Form validation
-* Handling invalid inputs
-* Verifying CRUD functionality
-
-## 🎯 Learning Outcomes
-
-Through this project, I gained practical experience in:
-
-* CRUD operations
-* Full-stack application development
-* Data management
-* REST API concepts
-* Database integration
-* Frontend and backend integration
-* Software development workflow
-* Testing and debugging
-* Git and GitHub
-
-## 🔮 Future Enhancements
-
-Future versions of the application can include:
-
-* User authentication and authorization
-* Advanced student search and filtering
-* Student performance tracking
-* Attendance management
-* Pagination for large datasets
-* Export student records to CSV/PDF
-* Admin dashboard with statistics
-* Improved security and validation
-
-## 👩‍💻 Author
-
-**Shivangi Sharma**
-
-B.Tech – Computer Science Engineering
-
-GitHub: [@shivangi-sharma0527](https://github.com/shivangi-sharma0527)
-
-## 📄 Internship Task
-
-This project was developed as part of a **Software Development Internship Task – Student Management System**.
-
----
-
-⭐ If you find this project useful, consider giving the repository a star!
+This implementation follows the supplied Advanced Upgrade Prompt for a real Student Management System, including full CRUD, dashboard analytics, responsive design, validation, accessibility considerations, and database-backed behavior.

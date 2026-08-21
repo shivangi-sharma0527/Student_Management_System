@@ -1,11 +1,10 @@
-# Asteria Student Management System
+# [Project name]
 
-A responsive registrar workspace for managing student records with a live PostgreSQL-backed directory, dashboard, and complete CRUD workflows.
+_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
 
 ## Run & Operate
 
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm --filter @workspace/student-management run dev` — run the student management web app
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
@@ -23,35 +22,23 @@ A responsive registrar workspace for managing student records with a live Postgr
 
 ## Where things live
 
-- `artifacts/student-management/` — React + Vite application with dashboard, directory, and student forms
-- `artifacts/api-server/src/routes/students.ts` — student REST handlers
-- `lib/api-spec/openapi.yaml` — source of truth for student API contracts
-- `lib/db/src/schema/students.ts` — PostgreSQL/Drizzle student table and types
-- `lib/api-client-react/src/generated/` — generated React Query client hooks
+_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
 
 ## Architecture decisions
 
-- The frontend uses generated React Query hooks from the OpenAPI contract rather than handwritten fetch calls.
-- Student email addresses are unique at the database level to prevent duplicate records.
-- Dashboard totals and grouped course/year counts come from a dedicated summary endpoint so the overview stays data-backed.
-- The shared API server owns all `/api` routes; the web app is served at the root artifact path.
+_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
 
 ## Product
 
-- Dashboard overview with total students, represented courses, year groups, recent records, and quick actions.
-- Searchable and filterable student directory.
-- Validated add and edit forms for full name, email, phone, course, year, gender, and address.
-- Delete confirmation with success/error feedback.
-- Responsive desktop and mobile navigation.
+_Describe the high-level user-facing capabilities of this app once they exist._
 
 ## User preferences
 
-No additional preferences recorded.
+_Populate as you build — explicit user instructions worth remembering across sessions._
 
 ## Gotchas
 
-- After editing `lib/api-spec/openapi.yaml`, run `pnpm --filter @workspace/api-spec run codegen`.
-- The artifact workflows provide `PORT` and `BASE_PATH`; use the managed workflows rather than starting Vite from the workspace root.
+_Populate as you build — sharp edges, "always run X before Y" rules._
 
 ## Pointers
 
